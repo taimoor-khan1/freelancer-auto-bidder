@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import AuthBase from '@/layouts/AuthLayout.vue';
-import { register } from '@/routes';
+import { route } from '@/lib/utils';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
 import { Form, Head } from '@inertiajs/vue3';
@@ -51,6 +51,7 @@ defineProps<{
                         :tabindex="1"
                         autocomplete="email"
                         placeholder="email@example.com"
+                        class="border-gray-300 focus:border-[#006AFF] focus:ring-[#006AFF]"
                     />
                     <InputError :message="errors.email" />
                 </div>
@@ -61,7 +62,7 @@ defineProps<{
                         <TextLink
                             v-if="canResetPassword"
                             :href="request()"
-                            class="text-sm"
+                            class="text-sm text-[#006AFF] hover:text-[#0056CC]"
                             :tabindex="5"
                         >
                             Forgot password?
@@ -75,6 +76,7 @@ defineProps<{
                         :tabindex="2"
                         autocomplete="current-password"
                         placeholder="Password"
+                        class="border-gray-300 focus:border-[#006AFF] focus:ring-[#006AFF]"
                     />
                     <InputError :message="errors.password" />
                 </div>
@@ -88,7 +90,7 @@ defineProps<{
 
                 <Button
                     type="submit"
-                    class="mt-4 w-full"
+                    class="mt-4 w-full bg-[#006AFF] hover:bg-[#0056CC] text-white"
                     :tabindex="4"
                     :disabled="processing"
                     data-test="login-button"
@@ -103,7 +105,7 @@ defineProps<{
                 v-if="canRegister"
             >
                 Don't have an account?
-                <TextLink :href="register()" :tabindex="5">Sign up</TextLink>
+                <TextLink :href="route('register')" class="text-[#006AFF] hover:text-[#0056CC]" :tabindex="5">Sign up</TextLink>
             </div>
         </Form>
     </AuthBase>

@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'freelancer' => [
+        'client_id' => env('FREELANCER_CLIENT_ID'),
+        'client_secret' => env('FREELANCER_CLIENT_SECRET'),
+        'redirect_uri' => env('FREELANCER_REDIRECT_URI', env('APP_URL') . '/auth/freelancer/callback'),
+    ],
+
 ];

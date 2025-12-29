@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import AuthBase from '@/layouts/AuthLayout.vue';
-import { login } from '@/routes';
+import { route } from '@/lib/utils';
 import { store } from '@/routes/register';
 import { Form, Head } from '@inertiajs/vue3';
 </script>
@@ -36,6 +36,7 @@ import { Form, Head } from '@inertiajs/vue3';
                         autocomplete="name"
                         name="name"
                         placeholder="Full name"
+                        class="border-gray-300 focus:border-[#006AFF] focus:ring-[#006AFF]"
                     />
                     <InputError :message="errors.name" />
                 </div>
@@ -50,6 +51,7 @@ import { Form, Head } from '@inertiajs/vue3';
                         autocomplete="email"
                         name="email"
                         placeholder="email@example.com"
+                        class="border-gray-300 focus:border-[#006AFF] focus:ring-[#006AFF]"
                     />
                     <InputError :message="errors.email" />
                 </div>
@@ -64,6 +66,7 @@ import { Form, Head } from '@inertiajs/vue3';
                         autocomplete="new-password"
                         name="password"
                         placeholder="Password"
+                        class="border-gray-300 focus:border-[#006AFF] focus:ring-[#006AFF]"
                     />
                     <InputError :message="errors.password" />
                 </div>
@@ -78,13 +81,14 @@ import { Form, Head } from '@inertiajs/vue3';
                         autocomplete="new-password"
                         name="password_confirmation"
                         placeholder="Confirm password"
+                        class="border-gray-300 focus:border-[#006AFF] focus:ring-[#006AFF]"
                     />
                     <InputError :message="errors.password_confirmation" />
                 </div>
 
                 <Button
                     type="submit"
-                    class="mt-2 w-full"
+                    class="mt-2 w-full bg-[#006AFF] hover:bg-[#0056CC] text-white"
                     tabindex="5"
                     :disabled="processing"
                     data-test="register-user-button"
@@ -97,8 +101,8 @@ import { Form, Head } from '@inertiajs/vue3';
             <div class="text-center text-sm text-muted-foreground">
                 Already have an account?
                 <TextLink
-                    :href="login()"
-                    class="underline underline-offset-4"
+                    :href="route('login')"
+                    class="text-[#006AFF] hover:text-[#0056CC] underline underline-offset-4"
                     :tabindex="6"
                     >Log in</TextLink
                 >
