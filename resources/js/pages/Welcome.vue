@@ -93,12 +93,12 @@ const flashType = computed(() => {
                         Set your preferences once and let our system bid on projects that match your criteria.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <Link
+                        <a
                             :href="route('freelancer.redirect')"
                             class="px-8 py-4 bg-white text-[#006AFF] rounded-lg hover:bg-blue-50 transition-colors font-semibold text-lg text-center shadow-lg"
                         >
                             Login with Freelancer
-                        </Link>
+                        </a>
                         <Link
                             :href="route('login')"
                             class="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors font-semibold text-lg text-center"

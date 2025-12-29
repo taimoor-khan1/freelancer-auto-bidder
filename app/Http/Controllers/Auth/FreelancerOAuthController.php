@@ -20,14 +20,26 @@ class FreelancerOAuthController extends Controller
      */
     public function redirect()
     {
-        // TODO: Implement Freelancer OAuth redirect
-        // For now, return a placeholder
         $clientId = config('services.freelancer.client_id');
         $redirectUri = config('services.freelancer.redirect_uri');
+        
+        // Check if credentials are configured
+        if (empty($clientId) || $clientId === 'your_client_id') {
+            return redirect()->route('home')
+                ->with('error', 'Freelancer OAuth is not configured. Please contact the administrator.');
+        }
+        
+        // Ensure redirect URI is properly formatted
+        if (empty($redirectUri)) {
+            $redirectUri = url('/auth/freelancer/callback');
+        }
+        
         $state = Str::random(40);
         
+        // Store state in session for verification
         session(['freelancer_oauth_state' => $state]);
         
+        // Build OAuth authorization URL
         $authUrl = "https://www.freelancer.com/api/auth/oauth/authorize?" . http_build_query([
             'client_id' => $clientId,
             'redirect_uri' => $redirectUri,
@@ -36,7 +48,8 @@ class FreelancerOAuthController extends Controller
             'scope' => 'basic',
         ]);
 
-        return redirect($authUrl);
+        // Use a full redirect (not Inertia) for OAuth
+        return redirect()->away($authUrl);
     }
 
     /**
